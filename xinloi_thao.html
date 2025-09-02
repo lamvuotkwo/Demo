@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xin Lỗi Bé Thảo</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Comic Sans MS", cursive;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 1000% 1000%;
+      animation: rainbow 20s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+    }
+    @keyframes rainbow {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 20px; text-shadow: 0 0 20px white; }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      background: #fff;
+      color: #ff69b4;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+    }
+    button:hover { background: #ff69b4; color: white; }
+
+    /* Thỏ cute */
+    .rabbit {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 50% 50% 40% 40%;
+      animation: bounce 3s infinite ease-in-out alternate;
+      box-shadow: 0 0 20px rgba(255,255,255,0.8);
+    }
+    .rabbit::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      top: -30px;
+      left: 10px;
+      transform: rotate(-10deg);
+      box-shadow: 20px 0 white;
+    }
+    .rabbit::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+      bottom: 10px;
+      right: 10px;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-30px); }
+    }
+
+    /* Tuyết rơi */
+    .snow {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      top: -10px;
+      animation: fall 10s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐇 Thảo ơi, em hãy bấm vào đây 🐇</h1>
+  <button onclick="startStory()">Mở Thư</button>
+
+  <script>
+    // Tạo 100 con thỏ cute
+    for (let i = 0; i < 100; i++) {
+      let r = document.createElement("div");
+      r.className = "rabbit";
+      r.style.left = Math.random() * window.innerWidth + "px";
+      r.style.top = Math.random() * window.innerHeight + "px";
+      r.style.animationDuration = (2 + Math.random()*2) + "s";
+      document.body.appendChild(r);
+    }
+
+    // Tạo tuyết rơi
+    setInterval(() => {
+      let snow = document.createElement("div");
+      snow.className = "snow";
+      snow.style.left = Math.random() * window.innerWidth + "px";
+      snow.style.animationDuration = (5 + Math.random()*5) + "s";
+      snow.style.opacity = Math.random();
+      document.body.appendChild(snow);
+      setTimeout(() => snow.remove(), 10000);
+    }, 200);
+
+    // Chuỗi câu chuyện
+    function startStory() {
+      Swal.fire({
+        title: "💌 Một bức thư bay đến...",
+        text: "Thảo ơi, anh có điều muốn nói...",
+        showConfirmButton: true,
+        confirmButtonText: "Đọc thư",
+        background: "rgba(255,255,255,0.9)",
+        color: "#ff69b4"
+      }).then(() => {
+        Swal.fire("💖 Bé iu ơi...").then(() => {
+          Swal.fire("😢 Anh biết anh sai rồi...").then(() => {
+            Swal.fire("🙏 Cho anh xin lỗi nha...").then(() => {
+              Swal.fire({
+                title: "Em tha lỗi cho anh nha 💕",
+                confirmButtonText: "Đồng ý 💘",
+                allowOutsideClick: false,
+                background: "rgba(255,255,255,0.9)",
+                color: "#ff69b4"
+              }).then(() => {
+                // Chuyển link luôn
+                window.location.href = "https://love.tsonit.com/hoanglam5377";
+              });
+            });
+          });
+        });
+      });
+    }
+  </script>
+</body>
+</html>
